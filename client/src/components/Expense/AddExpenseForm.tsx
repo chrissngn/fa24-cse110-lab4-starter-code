@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 import { Expense } from "../../types/types";
-import { createExpense } from "../../../../server/src/utils/expense-utils";
+import { createExpense } from "../../utils/expense-utils";
 
 const AddExpenseForm = () => {
   // Exercise: Consume the AppContext here
