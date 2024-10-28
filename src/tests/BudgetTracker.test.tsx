@@ -151,6 +151,7 @@ describe('Budget Tracking Application',()=>{
 
     await waitFor(() => {
       expect(screen.getByText("Remaining: $950")).toBeInTheDocument();
+      //expect(screen.getByText("Remaining: $1000")).toBeInTheDocument();
       expect(screen.getByText("Spent so far: $50")).toBeInTheDocument();
     });
 
