@@ -5,6 +5,7 @@ export const fetchBudget = async (): Promise<number> => {
     if (!response.ok) {
         throw new Error("Failed to fetch budget");
     }
+    // need to parse data we are getting before pushing it along
     const jsonResponse = await response.json();
     return jsonResponse.data;
 };
@@ -22,5 +23,5 @@ export const updateBudget = async (budget: number): Promise<number>=>{
     }
 
     const jsonResponse = await response.json();
-    return jsonResponse.data;
+    return jsonResponse; // might not need .data
 };
