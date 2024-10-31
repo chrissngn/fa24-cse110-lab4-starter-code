@@ -27,8 +27,10 @@ const Budget = () => {
     if (newBudget !== null) {
         try {
             const updatedBudget = await updateBudget(newBudget);
+            console.log("Updated Budget:", updatedBudget)
             setBudget(updatedBudget);
             setIsEditing(false);
+            setError(null);
         } catch (error) {
             console.error("Failed to update budget:", error);
             setError("Failed to update budget");
