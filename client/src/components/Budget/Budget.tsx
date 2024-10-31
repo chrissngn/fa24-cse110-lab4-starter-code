@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { fetchBudget, updateBudget } from "../utils/budget-utils";
-
+import { fetchBudget, updateBudget } from "../../utils/budget-utils";
+//Users/danielledang/Documents/GitHub/fa24-cse110-lab4-starter-code/client/src/utils/budget-utils.ts
+//Users/danielledang/Documents/GitHub/fa24-cse110-lab4-starter-code/client/src/components/Budget/Budget.tsx
 const Budget = () => {
   const [budget, setBudget] = useState<number | null>(null);
   const [newBudget, setNewBudget] = useState<number | null>(null);
