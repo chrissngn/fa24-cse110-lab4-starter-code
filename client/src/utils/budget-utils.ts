@@ -18,6 +18,9 @@ export const updateBudget = async (budget: number): Promise<number>=>{
         body: JSON.stringify({amount:budget}),
     });
     if(!response.ok){
-        throw new Error("Failed to upda")
+        throw new Error("Failed to update budget");
     }
-}
+
+    const jsonResponse = await response.json();
+    return jsonResponse.data;
+};
