@@ -21,12 +21,20 @@ export function createExpenseServer(req: Request, res: Response, expenses: Expen
 export function deleteExpense(req: Request, res: Response, expenses: Expense[]) {
     // TO DO: Implement deleteExpense function
     const{id} = req.params;
-    const expenseIndex = expenses.findIndex(expense => expense.id === id);
-    if(expenseIndex === -1){
-        return res.status(404).send({error: "Expense not found"});
+
+    if (!id) {
+        return res.status(400).json({ message: "Expense ID is required"});
     }
-    const deletedExpense = expenses.splice(expenseIndex,1)[0];
-    res.status(200).send({data: deletedExpense});
+
+    const expenseIndex = expenses.findIndex(expense => expense.id === id);
+
+    if(expenseIndex !== -1){
+        expenses.splice(expenseIndex, 1);
+        res.status(200).json({message: "Expense deleted successfully"});
+    }
+    else{
+        res.status(404).json({message: "Expense not found"});
+    }
 }
 
 export function getExpenses(req: Request, res: Response, expenses: Expense[]) {
