@@ -1,22 +1,24 @@
 import { Expense } from "../types";
 import { Request, Response } from "express";
+import {Database} from "sqlite";
 
-export function createExpenseServer(req: Request, res: Response, expenses: Expense[]) {
+export async function createExpenseServer(req: Request, res: Response, db: Database) {
     const { id, cost, description } = req.body;
-
+ 
     if (!description || !id || !cost) {
         return res.status(400).send({ error: "Missing required fields" });
     }
-
-    const newExpense: Expense = {
-        id: id,
-        description,
-        cost,
+ 
+    try {
+        await db.run('INSERT INTO expenses (id, description, cost) VALUES (?, ?, ?);', [id, description, cost]);
+    } catch (error) {
+        return res.status(400).send({ error: `Expense could not be created, + ${error}` });
     };
-
-    expenses.push(newExpense);
-    res.status(201).send(newExpense);
-}
+ 
+    res.status(201).send({ id, description, cost });
+ 
+ 
+ }
 
 export function deleteExpense(req: Request, res: Response, expenses: Expense[]) {
     // TO DO: Implement deleteExpense function
